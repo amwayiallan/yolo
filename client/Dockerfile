@@ -1,8 +1,10 @@
-# syntax=docker/dockerfile:1
-
-FROM node:18-alpine
+# Build the client application
+FROM node:18 as frontend-builder
 WORKDIR /app
-COPY . .
-RUN yarn install --production
-CMD ["node", "src/index.js"]
-EXPOSE 3000
+COPY client/ .
+RUN npm run build
+
+# Serve the client application using nginx
+FROM nginx:alpine
+COPY --from=frontend-builder/app/build/usr/share/nginx/html
+EXPOSE 80
