@@ -1,5 +1,5 @@
 # install dependencies
-FROM node:18 as backend-builder
+FROM node:14 as backend-builder
 
 WORKDIR /app
 
@@ -9,11 +9,13 @@ COPY backend/ .
 RUN npm run build
 
 # final image
-FROM node:18-alpine
+FROM node:14-alpine
 
 WORKDIR /app
 
 COPY --from=backend-builder /app .
+
 EXPOSE 3000
+
 CMD ["npm","start"]
 
