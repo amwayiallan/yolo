@@ -1,14 +1,13 @@
-# install dependencies
+# First we install all the required dependencies 
 FROM node:14 as backend-builder
 
 WORKDIR /app
 
-COPY backend/package.json ./
+COPY /package.json ./
 RUN npm install
-COPY backend/ .
-RUN npm run build
+COPY . .
 
-# final image
+# let us now get final image
 FROM node:14-alpine
 
 WORKDIR /app
