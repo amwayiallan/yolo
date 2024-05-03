@@ -1,16 +1,15 @@
-# Build the client application
-FROM node:18 as frontend-builder
+# Let us start by building the client application
+FROM node:14 as frontend-builder
 
 WORKDIR /app
 
-COPY client/package.json ./
+COPY /package.json ./
 RUN npm install
-COPY client/ .
-RUN npm run build
+COPY . .
 
 # Serve the client application using nginx
 FROM nginx:alpine
 
-COPY --from=frontend-builder /app/build /usr/share/nginx/html
+COPY --from=frontend-builder /app .
 
 EXPOSE 80
