@@ -10,7 +10,7 @@ COPY . .
 # let us now get final image
 FROM node:14-alpine
 
-WORKDIR /app
+WORKDIR /app 
 
 COPY --from=backend-builder /app .
 
