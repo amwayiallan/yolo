@@ -1,28 +1,28 @@
 version: '3.9'
 services:
   frontend:
-    image:amwayiallan/client-img:latest
+    image: amwayiallan/client-img:latest
     ports:
-      -"8080:80"
+      - "8080:80"
 
   backend:
-    image:amwayiallan/backend-img:latest
+    image: amwayiallan/backend-img:latest
     ports:
-      -"3000:3000"
-
-  volumes:
-    -backend-data:/backend/app/data
+      - "3009:3000"
+    volumes:
+      - backend-data:/backend/app/data
     depends_on:
-      -"mongodb"
+      - mongodb
 
   mongodb:
-    image:mongodb
+    image: mongo
     ports:
-      -"27017:27017"
+      - "27017:27017"
     volumes:
-    -mongodb-data:/data/db
+      - mongodb-data:/data/db
 
 volumes:
-  backend-data:
-  mongodb-data:
+  backend-data: {}
+  mongodb-data: {}
+
 
