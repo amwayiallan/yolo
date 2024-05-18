@@ -1,0 +1,85 @@
+---
+- name: Provision Web Application
+  hosts: all
+  become: yes
+  vars:
+    app_source: "https://github.com/amwayiallan/yolo.git"
+    frontend_port: 80
+    backend_port: 5000
+    database_port: 3306
+
+  tasks:
+    - name: Clone code from GitHub
+      git:
+        repo: "{{ app_source }}"
+        dest: /opt/web_app
+      tags: [clone]
+
+    - name: Include frontend role
+      include_role:
+        name: frontend
+      tags: [frontend]
+
+    - name: Include backend role
+      include_role:
+        name: backend
+      tags: [backend]
+
+    - name: Include database role
+      include_role:
+        name: database
+      tags: [mongod]
+# roles/frontend/tasks/main.yml
+---
+- name: Set up frontend container
+  block:
+    - name: Pull frontend image
+      docker_image:
+        name: client-img
+        source: pull
+      tags: [frontend]
+
+    - name: Run frontend container
+      docker_container:
+        name: frontend
+        image: client-img
+        ports:
+          - "{{ frontend_port }}:80"
+  tags: [frontend]
+
+# roles/backend/tasks/main.yml
+---
+- name: Set up backend container
+  block:
+    - name: Pull backend image
+      docker_image:
+        name: backend-img
+        source: pull
+      tags: [backend]
+
+    - name: Run backend container
+      docker_container:
+        name: backend
+        image: backend-img
+        ports:
+          - "{{ backend_port }}:5000"
+  tags: [backend]
+
+# roles/database/tasks/main.yml
+---
+- name: Set up database container
+  block:
+    - name: Pull database image
+      docker_image:
+        name: mongo
+        source: pull
+      tags: [database]
+
+    - name: Run database container
+      docker_container:
+        name: database
+        image: mongo
+        ports:
+          - "{{ database_port }}:3306"
+  tags: [database]
+
