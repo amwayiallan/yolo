@@ -6,7 +6,7 @@
     app_source: "https://github.com/amwayiallan/yolo.git"
     frontend_port: 80
     backend_port: 5000
-    database_port: 3306
+    database_port: 27017
 
   tasks:
     - name: Clone code from GitHub
@@ -80,6 +80,6 @@
         name: database
         image: mongo
         ports:
-          - "{{ database_port }}:3306"
+          - "{{ database_port }}:27017"
   tags: [database]
 
