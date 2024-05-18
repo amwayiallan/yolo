@@ -7,8 +7,6 @@ cd yolo
 
 Initialize Vagrant:
 
-bash
-
 vagrant init ubuntu/focal64
 
 Edit Vagrantfile:
@@ -17,13 +15,9 @@ Modify the Vagrantfile to configure the VM to your needs. You can specify memory
 
 Start the Virtual Machine:
 
-bash
-
 vagrant up
 
 SSH into the Virtual Machine:
-
-bash
 
     vagrant ssh
 

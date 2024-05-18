@@ -35,14 +35,14 @@
   block:
     - name: Pull frontend image
       docker_image:
-        name: client-img
+        name: amwayiallan/client-img:latest
         source: pull
       tags: [frontend]
 
     - name: Run frontend container
       docker_container:
         name: frontend
-        image: client-img
+        image: amwayiallan/client-img:latest
         ports:
           - "{{ frontend_port }}:80"
   tags: [frontend]
@@ -53,14 +53,14 @@
   block:
     - name: Pull backend image
       docker_image:
-        name: backend-img
+        name: amwayiallan/backend-img:latest
         source: pull
       tags: [backend]
 
     - name: Run backend container
       docker_container:
         name: backend
-        image: backend-img
+        image: amwayiallan/backend-img:latest
         ports:
           - "{{ backend_port }}:5000"
   tags: [backend]
