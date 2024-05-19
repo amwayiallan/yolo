@@ -19,7 +19,7 @@ vagrant up
 
 SSH into the Virtual Machine:
 
-    vagrant ssh
+vagrant ssh
 
 Now, regarding the Ansible playbook setup, you would typically follow these steps:
 
