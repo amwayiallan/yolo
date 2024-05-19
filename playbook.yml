@@ -60,7 +60,7 @@
     - name: Run backend container
       docker_container:
         name: backend
-        image: amwayiallan/backend-img:latest
+        image: backend-img
         ports:
           - "{{ backend_port }}:5000"
   tags: [backend]
