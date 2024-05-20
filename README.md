@@ -21,3 +21,14 @@ Make sure that you have the following installed:
  `npm start`
 
  ### Go ahead a nd add a product (note that the price field only takes a numeric input)
+
+ # YOLO APP
+ This is an ecommerce website that enables buyers to view and buy fashion accessories online.
+
+ ### Choice of Base Image
+
+    Frontend Client (React): For the frontend client, we chose the Node.js LTS version as the base image for building the application. We utilized the official Node.js Docker image, which provides a stable environment for running JavaScript applications.
+
+    Backend Server (Node.js): Similar to the frontend client, we opted for the Node.js LTS version as the base image for the backend server. We used the official Node.js Docker image to ensure compatibility and stability.
+
+    MongoDB Database: Instead of building a custom Docker image for MongoDB, we opted to use the official MongoDB Docker image available on Docker Hub. This image provides a pre-configured MongoDB database server, simplifying the setup process.
