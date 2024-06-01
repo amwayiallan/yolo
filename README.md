@@ -34,3 +34,36 @@ Make sure that you have the following installed:
 
 
 We are to run a container that will launch the server to host this website
+
+# Kubernetes deployment
+By following these steps, you should have a fully functional application deployed on GKE with a StatefulSet for the database, services exposing your pods, and Kubernetes controllers ensuring service availability.
+## Deployment Instructions
+
+### Prerequisites
+- GCP account with GKE setup
+- Docker Hub account
+
+### Steps
+1. Build and push Docker images:
+
+    `docker build -t <your-dockerhub-username>/web-app:<tag>`
+    `docker push <your-dockerhub-username>/web-app:<tag>`
+
+2. Create and deploy Kubernetes manifests:
+
+    `kubectl apply -f statefulset.yaml`
+    `kubectl apply -f service.yaml`
+    `kubectl apply -f deployment.yaml`
+
+3. Verify deployment:
+    
+    `kubectl get pods`
+   `kubectl get services`
+
+4. Access the application at `http://<external-ip>:80`.
+
+### Verifying the Application
+- Ensure adding items to the cart is functional.
+
+### External IP
+- The application is accessible at: `http://<external-ip>:80`
