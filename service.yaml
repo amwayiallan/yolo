@@ -7,6 +7,6 @@ spec:
     app: <app-name>
   ports:
   - protocol: TCP
-    port: <port>
+    port: 80
     targetPort: <target-port>
   type: LoadBalancer
