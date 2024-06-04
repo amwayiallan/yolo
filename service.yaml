@@ -1,12 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myip4-service
+  name: backend
 spec:
   selector:
-    app: <app-name>
+    app: backend
+  ports:
+  - protocol: TCP
+    port: 5000
+  type: LoadBalancer
+  name: frontend
+spec:
+  selector:
+    app: frontend
   ports:
   - protocol: TCP
     port: 80
-    targetPort: <target-port>
   type: LoadBalancer
