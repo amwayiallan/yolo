@@ -8,12 +8,5 @@ spec:
   ports:
   - protocol: TCP
     port: 5000
-  type: LoadBalancer
-  name: frontend
-spec:
-  selector:
-    app: frontend
-  ports:
-  - protocol: TCP
-    port: 80
+    targetPort: 5000
   type: LoadBalancer
